@@ -1,0 +1,19 @@
+{
+  "name": "workingwithmsql",
+  "version": "1.0.0",
+  "description": "Working with Msql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Anuj rai",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "mysql2": "^2.3.3"
+  }
+}

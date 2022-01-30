@@ -22,7 +22,8 @@ fetch(){
 }
 
 static searchFilter(id){
-    //Do Some Thing
+    console.log(`${typeof id} value is ${id}`)
+    return db.execute('Select * from products where id = ?',[id])
 }
 
 static update(){

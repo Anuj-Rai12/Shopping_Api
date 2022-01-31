@@ -1,39 +1,25 @@
-const db=require('../utils/db')
+const  Sequelize  = require('sequelize')
+const sequelize=require('../utils/db')
 
-class Products{
-
-    constructor(title,desc,price,image){
-        this.title=title,
-        this.desc=desc,
-        this.price=price,
-        this.image=image
+const Products=sequelize.define('Products',{
+    id:{
+        type:Sequelize.INTEGER,
+        primaryKey:true,
+        autoIncrement:true,
+        allowNull:false
+    },
+    title:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
+    description:{
+        type:Sequelize.STRING,
+        allowNull:false
     }
-
-
-save(){
-    return db.execute(
-        'INSERT INTO products (title,description,price,image) VALUES (?,?,?,?)',
-    [this.title,this.desc,this.price, this.image]
-    );
+    ,image:{
+    type:Sequelize.TEXT,
+    allowNull:false
 }
-
-fetch(){
-    return db.execute('select * from products')
-}
-
-static searchFilter(id){
-    console.log(`${typeof id} value is ${id}`)
-    return db.execute('Select * from products where id = ?',[id])
-}
-
-static update(){
-    //Do Some-Thing
-}
-
-static delete(){
-// Do Some Thing
-}
-
-}
+})
 
 module.exports.getProduct=Products

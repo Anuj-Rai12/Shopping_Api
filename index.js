@@ -3,6 +3,7 @@ const bodyParser=require('body-parser')
 const getDataRoute=require('./router/GetDataRoute')
 const insertDataRoute=require('./router/InsertRouteData')
 const searchQuery=require('./router/SearchQuery')
+const sequelize=require('./utils/db')
 const app=exp()
 
 
@@ -16,5 +17,9 @@ console.log(res[0])
 }).catch(err=>{
 console.log(err)
 })*/
-
+sequelize.sync().then(res=>{
+    console.log(res)
 app.listen(3000)
+}).catch(err=>{
+    console.log(err)
+})

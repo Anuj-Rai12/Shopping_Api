@@ -3,12 +3,13 @@ const db=require('../model/Products')
 
 const insertData=(req,res,next)=>{
 const obj=JSON.parse(JSON.stringify(req.body))
-console.log(obj)
+console.log(req.body)
 //const value=new db.getProduct(obj.title,obj.desc,obj.price,obj.image)
-db.getProduct.create({
+req.user.createProduct({
     title:obj.title,
     description:obj.desc,
-    image:obj.image
+    image:obj.image,
+    price:obj.price
 }).then(()=>{
     res.json({
         msg:"Data is Updated Success"

@@ -5,6 +5,6 @@ const app=express.Router()
 const  exp=express()
 
 exp.use(bodyParser.json())
-app.post('/user/:id/update',updateRoute)
+app.post('/products/:id/update',updateRoute)
 
 module.exports =app

@@ -5,5 +5,5 @@ const exp=express()
 const app = express.Router()
 
 exp.use(bodyParser.json())
-app.delete('/user/:id/delete',deleteData.getDelete)
+app.delete('/products/:id/delete',deleteData.getDelete)
 module.exports=app

@@ -6,6 +6,6 @@ const app=express.Router()
 
 
 exp.use(bodyParser.json())
-app.post('/user/add',controllerInsert.insertController)
+app.post('/products/add',controllerInsert.insertController)
 
 module.exports.getInsert=app

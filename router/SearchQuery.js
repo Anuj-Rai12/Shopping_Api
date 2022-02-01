@@ -5,6 +5,6 @@ const app=express.Router()
 const exp=express()
 
 exp.use(bodyParser.json())
-app.get('/users/:productId',searchQuery)
+app.get('/products/:productId',searchQuery)
 
 module.exports=app

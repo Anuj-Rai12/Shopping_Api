@@ -19,7 +19,11 @@ const Products=sequelize.define('Products',{
     ,image:{
     type:Sequelize.TEXT,
     allowNull:false
+},
+price:{
+    type:Sequelize.INTEGER,
+    allowNull:false,
 }
 })
 
-module.exports.getProduct=Products
+module.exports =Products

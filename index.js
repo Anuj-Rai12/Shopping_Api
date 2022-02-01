@@ -4,6 +4,7 @@ const getDataRoute=require('./router/GetDataRoute')
 const insertDataRoute=require('./router/InsertRouteData')
 const searchQuery=require('./router/SearchQuery')
 const sequelize=require('./utils/db')
+const updateData=require('./router/UpdateDataRoute')
 const app=exp()
 
 
@@ -12,13 +13,10 @@ app.use(bodyParser.json())
 app.use(getDataRoute.appRouter)
 app.use(insertDataRoute.getInsert)
 app.use(searchQuery)
-/*db.execute("select * from products").then((res)=>{
-console.log(res[0])
-}).catch(err=>{
-console.log(err)
-})*/
+app.use(updateData)
+
 sequelize.sync().then(res=>{
-    console.log(res)
+    //console.log(res)
 app.listen(3000)
 }).catch(err=>{
     console.log(err)

@@ -10,11 +10,13 @@ db.getProduct.create({
     description:obj.desc,
     image:obj.image
 }).then(()=>{
-    res.send({
+    res.json({
         msg:"Data is Updated Success"
     })
 }).catch(err=>{
-res.send(`${err}`)
+res.json({
+    msg:`Error ${err}`
+})
 })
 
 }

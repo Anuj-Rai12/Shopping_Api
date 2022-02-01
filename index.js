@@ -4,6 +4,7 @@ const getDataRoute=require('./router/GetDataRoute')
 const insertDataRoute=require('./router/InsertRouteData')
 const searchQuery=require('./router/SearchQuery')
 const sequelize=require('./utils/db')
+const deleteData=require('./router/DeleteDataRoute')
 const updateData=require('./router/UpdateDataRoute')
 const app=exp()
 
@@ -14,6 +15,7 @@ app.use(getDataRoute.appRouter)
 app.use(insertDataRoute.getInsert)
 app.use(searchQuery)
 app.use(updateData)
+app.use(deleteData)
 
 sequelize.sync().then(res=>{
     //console.log(res)

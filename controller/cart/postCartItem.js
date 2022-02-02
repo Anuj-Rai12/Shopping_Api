@@ -3,6 +3,7 @@ const Product = require('../../model/Products')
 const postCart =(req, res,next)=>{
     const productId = req.params.id
     let cartFetched;
+    let quantity=1
 req.user.getCart().then(cart =>{
     cartFetched=cart
     return cart.getProducts({where: {id:productId }})
@@ -12,21 +13,24 @@ req.user.getCart().then(cart =>{
         if(products.length > 0){
             product=products[0]
         }
-        let quantity=1
+        
         if(product){
             // update quantity
+            const oldQuantity =product.cartItem.qantityItem
+            quantity=quantity+oldQuantity
+            //console.log(`This is ${oldQuantity} and Qty local -> ${quantity}`)
+            return product
         }
+            return Product.findByPk(productId)
 
-    return Product.findByPk(productId).then(products =>{
-        return cartFetched.addProduct(products,{through:{qantityItem: quantity}})
-    }).catch(err =>{
-        console.log(err);
-    })
-}).then(products =>{
+}).then(data => {
+return cartFetched.addProduct(data,{through:{qantityItem: quantity}})
+
+}).then( ()=>{
     res.json({msg: 'Product added successfully'});
 })
 .catch((err)=>{
-    console.error(`${err.message} For Cart`)
+    //console.error(`${err.message} For Cart`)
     res.json({msg: err.message});
 })
 }

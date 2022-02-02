@@ -15,7 +15,8 @@ const cartItem=require('./model/CartItem')
 const cart=require('./model/Cart')
 const Product=require('./model/Products')
 const user=require('./model/Users')
-
+const orderItem=require('./model/OrderItem')
+const Order = require('./model/Order')
 
 const app=exp()
 
@@ -47,11 +48,15 @@ user.hasOne(cart)
 cart.belongsTo(user)
 cart.belongsToMany(Product,{through:cartItem})
 Product.belongsToMany(cart,{through:cartItem})
+user.hasMany(Order)
+Order.belongsTo(user)
+Order.belongsToMany(Product,{through:orderItem})
+Product.belongsToMany(Order,{through:orderItem})
 
 
 sequelize
-//.sync({force: true})
-.sync()
+.sync({force: true})
+//.sync()
 .then(res=>{
     return user.findByPk(1)
     //console.log(res)

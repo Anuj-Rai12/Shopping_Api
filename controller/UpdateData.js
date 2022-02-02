@@ -4,16 +4,19 @@ const updateData=(req,res,next)=>{
     const obj=JSON.parse(JSON.stringify(req.body))
     console.log(obj)
     console.log(`${req.params.id}`)
-    db.update(obj,{where:{ id:req.params.id }}
-    ).then(data=>{
-        console.log(`File is Updated -> ${data}`)
+    req.user.getProducts({where: {id:req.params.id }})
+    .then(products =>{
+        console.log(products)
+        return products[0].update(obj)
+    }).then(data=>{
         res.json({
+            statusCode:200,
             msg:"Data is Added Sucessfully"
         })
     }).catch(err=>{
-        console.log(`Error while makeing Update ${err}`)
         res.json({
-            msg:"Error while making Update"
+            statusCode:err.statusCode,
+            msg:`Error while making Update ${err.message}`
         })
     })
 }

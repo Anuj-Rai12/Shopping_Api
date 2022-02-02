@@ -4,6 +4,8 @@ const getDataRoute=require('./router/GetDataRoute')
 const insertDataRoute=require('./router/InsertRouteData')
 const searchQuery=require('./router/SearchQuery')
 const sequelize=require('./utils/db')
+const cartRoute=require('./router/cart/getCartRoute')
+const cartPost=require('./router/cart/PostCartRoute')
 const deleteData=require('./router/DeleteDataRoute')
 const updateData=require('./router/UpdateDataRoute')
 
@@ -24,10 +26,13 @@ app.use((req,res,next)=>{
         console.error(err)
     })
 })
+
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 app.use(getDataRoute.appRouter)
 app.use(insertDataRoute.getInsert)
+app.use(cartRoute.getCart)
+app.use(cartPost.postCartRoute)
 app.use(searchQuery)
 app.use(updateData)
 app.use(deleteData)
@@ -52,6 +57,9 @@ if(!userData){
     return user.create({name:'Anuj Rai',email:'anujRai@gmail.com'})
 }
 return userData
+}).then(result=>{
+    console.log(result.getCart())
+    return result.createCart()
 }).then(result=>{
     console.log(result)
     app.listen(3000)

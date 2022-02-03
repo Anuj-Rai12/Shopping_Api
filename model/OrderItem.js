@@ -1,7 +1,7 @@
 const  Sequelize  = require('sequelize')
 const sequelize=require('../utils/db')
 
-const UserItem=sequelize.define('UserItem', {
+const orderItem=sequelize.define('OrderItem', {
     id:{
         type:Sequelize.INTEGER,
         primaryKey:true,
@@ -9,9 +9,9 @@ const UserItem=sequelize.define('UserItem', {
         allowNull:false,
     },
     orderItem: {
-        type:Sequelize.STRING,
+        type:Sequelize.INTEGER,
         allowNull:false
     }
 })
 
-module.exports =UserItem
+module.exports =orderItem

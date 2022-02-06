@@ -1,23 +1,24 @@
-const getOrderItem=(req, res, next)=>{
+const getOrderItem = (req, res, next) => {
 
-req.user.getOrders().then(orders=>{
-    console.log("This is Order Item")
-//return orders.getProduct()
-return orders[0].getProducts()
+    req.user.getOrders().then(orders => {
+            console.log("This is Order Item")
+            //return orders.getProduct()
+            return orders[0].getProducts()
 
-}).then(products =>{
+        }).then(products => {
 
-    console.log(products)
+            console.log(products)
 
-    res.json(products)
-})
-.catch(err=>{
+            res.json(products)
+        })
+        .catch(err => {
 
-    res.json({status: err.status, 
-        message: `Error while getting products ${err.message}`
-    })
-})
+            res.json({
+                status: err.status,
+                message: `Error while getting products ${err.message}`
+            })
+        })
 
 }
 
-module.exports.OrderItem =getOrderItem
+module.exports.OrderItem = getOrderItem
